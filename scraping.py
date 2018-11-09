@@ -29,6 +29,7 @@ def get_all_urls():
     return (urls)
 
 def feature_scrapping(url):
+    features = {}
     soup = BeautifulSoup(resp = requests.get(url).content,'html.parser')
     time = soup.find('time')['datetime']
     item_features = soup.find(class_='features').find('ul').text.strip()
@@ -45,7 +46,29 @@ def feature_scrapping(url):
     tablet_visit = float(soup.find(class_='secondary').find_all('strong')[1].text.strip('%'))/100
     mehs = int(soup.find(id='total-mehs').text)
     type_meh = float(soup.find(id='referrals').find(class_='primary').find('strong').text.strip('%'))/100
+    referrals = soup.find_all(class_='referrer')
+    ref_dict = {}
+    for ref in referrals:
+        link = ref.find(class_='base')['href']
+        parsed_uri = urlparse(link)
+        web = parsed_uri.netloc.split('.')[-2]
+        ref_dict[web] = float(ref['data-percentage'])
     sale_num = int(soup.find(id='sold-quantity').text)
     sale_revenue = int(soup.find(id = 'sold-revenue').text.strip('$'))
     poll_num = int(soup.find(class_='vote-count').text.split()[0])
+    features['time']=time
+    features['item_id']=item_id
+    features['item_name']=item
+    features['item_features']=item_features
+    features['condition']=condition
+    features['story']=story
+    features['visits']= visits
+    features['phone_visits']=phone_visit
+    features['tablet_visits']=tablet_visit
+    features['mehs']=mehs
+    features['type_meh']=type_meh
+    features['sale_num']=sale_num
+    features['sale_revenue']=sale_revenue
+    features['poll_num']=poll_num
+    return features, ref_dict
     
