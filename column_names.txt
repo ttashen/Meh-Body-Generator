@@ -1,6 +1,6 @@
 time: yyyy-mm-ddT00:00:00.000Z
 item_id : string
-item : string
+item_name : string
 item_features: string
 condition: string
 story: string
@@ -14,7 +14,8 @@ referrals: {clarkdeals: percentage
             dealnews': percentage
             facebook': percentage
             reddit': percentage
-            twitter': percentage}
+            twitter': percentage
+            ...}
 sale_num: int
 sale_revenue: int
 poll_num: int
