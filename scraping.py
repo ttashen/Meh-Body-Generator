@@ -10,11 +10,12 @@ import time
 
 def get_all_urls():
 #   Get all the deal links from deal list page
-#   Since list page needs refresh to show all the deals,  
+#   Since list page needs refresh to show all the deals, I accessed the network topic.js to get the full list 
     all_deal_link = []
     for i in range(1,20):
         all_deal_link.append('https://meh.com/forum/topics.json?page&{0}&category=deals&sort=date-created'.format(i))
     double_url = []
+#     each element obtained double_url has the url of interest in [], and a duplicate in () right after. The url needs to be parsed from the string.
     for link in all_deal_link:
         raw_data = json.loads(requests.get(link).text)
         for x in raw_data:
@@ -31,9 +32,15 @@ def get_all_urls():
 def feature_scrapping(url):
     features = {}
     soup = BeautifulSoup(requests.get(url).content,'html.parser')
+#     to test the request is a success
+#     response = requests.get(url)
+#     print(response.status_code)
     item_features = soup.find(class_='features').find('ul').text.strip()
     spec_url = soup.find(class_='specs')['href']
     spe_soup =BeautifulSoup(requests.get(spec_url).content,'html.parser')
+#     to test the request is a success
+#     spe_response = requests.get(spec_url)
+#     print(spe_response.status_code)
     item = spe_soup.find(class_='p-name').text
     item_id = spe_soup.find(class_='h-entry topic unread')['id']
     date = spe_soup.find('time')['datetime']
@@ -76,10 +83,14 @@ def feature_scrapping(url):
 if __name__=='__main__':
     urls = get_all_urls()[1:]
     rows = []
-    for i, url in enumerate(urls):
-        print (i)
+    for url in urls:
         columns.append(feature_scrapping(url))
         time.sleep(np.random.randint(3,10))
+#     to see which url is not responding
+#     for i, url in enumerate(urls):
+#         print (i)
+#     columns.append(feature_scrapping(url))
+#     time.sleep(np.random.randint(3,10))
     data = pd.DataFrame(rows)
     data.to_csv('meh_data',sep='\t')
         
