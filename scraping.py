@@ -13,21 +13,22 @@ def get_all_urls():
 #   Since list page needs refresh to show all the deals, I accessed the network topic.js to get the full list 
     all_deal_link = []
     for i in range(1,20):
-        all_deal_link.append('https://meh.com/forum/topics.json?page&{0}&category=deals&sort=date-created'.format(i))
-    double_url = []
+        all_deal_link.append('https://meh.com/forum/topics.json?page={0}&category=deals&sort=date-created'.format(i))
 #     each element obtained double_url has the url of interest in [], and a duplicate in () right after. The url needs to be parsed from the string.
+    double_url = []
     for link in all_deal_link:
-        raw_data = json.loads(requests.get(link).text)
+        response = requests.get(link)
+        raw_data = json.loads(response.text)
         for x in raw_data:
             double_url.append(x['text']['raw'])
     table = str.maketrans(dict.fromkeys("()"))
-    urls = []
-    for i,s in enumerate(double_url):
+    url = []
+    for s in double_url:
         if ']' in s:
-            urls.append(s.split(']')[1].translate(table))
+            url.append(s.split(']')[1].translate(table))
         else:
-            urls.append(s)
-    return urls
+            url.append(s)
+    return url
 
 def feature_scrapping(url):
     features = {}
@@ -85,6 +86,7 @@ if __name__=='__main__':
     rows = []
     for url in urls:
         columns.append(feature_scrapping(url))
+#     sleep command here is to prevent the server being 'angry' at my scraping
         time.sleep(np.random.randint(3,10))
 #     to see which url is not responding
 #     for i, url in enumerate(urls):
