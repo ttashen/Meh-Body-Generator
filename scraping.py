@@ -63,7 +63,11 @@ def feature_scrapping(url):
         ref_dict[web] = float(ref['data-percentage'])
     sale_num = int(soup.find(id='sold-quantity').text)
     sale_revenue = int(soup.find(id = 'sold-revenue').text.strip('$'))
-    poll_num = int(soup.find(class_='vote-count').text.split()[0])
+    poll_stats = soup.find(class_='vote-count')
+    if poll_stats:
+        poll_num = int(soup.find(class_='vote-count').text.split()[0])
+    else:
+        poll_num = 0
     features['datetime']=date
     features['item_id']=item_id
     features['item_name']=item
