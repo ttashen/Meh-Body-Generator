@@ -36,7 +36,11 @@ def feature_scrapping(url):
 #     to test the request is a success
 #     response = requests.get(url)
 #     print(response.status_code)
-    item_features = soup.find(class_='features').find('ul').text.strip()
+    description = soup.find(class_='features').find('ul')
+    if description:
+        item_features = description.text.strip()
+    else:
+        item_features = None
     spec_url = soup.find(class_='specs')['href']
     spe_soup =BeautifulSoup(requests.get(spec_url).content,'html.parser')
 #     to test the request is a success
