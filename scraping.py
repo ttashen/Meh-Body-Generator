@@ -41,17 +41,22 @@ def feature_scrapping(url):
         item_features = description.text.strip()
     else:
         item_features = None
-    spec_url = soup.find(class_='specs')['href']
-    spe_soup =BeautifulSoup(requests.get(spec_url).content,'html.parser')
-#     to test the request is a success
-#     spe_response = requests.get(spec_url)
-#     print(spe_response.status_code)
-    item = spe_soup.find(class_='p-name').text
-    item_id = spe_soup.find(class_='h-entry topic unread')['id']
-    date = spe_soup.find('time')['datetime']
-    condition = re.compile(r'Condition')
-    specs = spe_soup.find('li', class_='comment')
-    condition = specs.find(text=condition)
+    spec_link = soup.find(class_='specs')
+    if spec_link:
+        spec_url = spec_link['href']
+        spe_soup =BeautifulSoup(requests.get(spec_url).content,'html.parser')
+    #     to test the request is a success
+        spe_response = requests.get(spec_url)
+        print(spe_response.status_code)
+        item_id = spe_soup.find(class_='h-entry topic unread')['id']
+        date = spe_soup.find('time')['datetime']
+        condition = re.compile(r'Condition')
+        specs = spe_soup.find('li', class_='comment')
+        condition = specs.find(text=condition)
+    else:
+        item_id = None
+        date = None
+        condition = None
     story = soup.find(class_='story').text.strip()
     visits = int(soup.find(class_='primary').find('strong').text.strip())
     phone_visit = float(soup.find(class_='secondary').find_all('strong')[0].text.strip('%'))/100
@@ -92,8 +97,13 @@ def feature_scrapping(url):
 if __name__=='__main__':
     urls = get_all_urls()[1:]
     rows = []
+    unparsed = []
     for url in urls:
-        columns.append(feature_scrapping(url))
+        try:
+            columns.append(feature_scrapping(url))
+        except:
+            unpased.append(url)
+            print ('url {0} could not be parsed'.format(url))
 #     sleep command here is to prevent the server being 'angry' at my scraping
         time.sleep(np.random.randint(3,10))
 #     to see which url is not responding
