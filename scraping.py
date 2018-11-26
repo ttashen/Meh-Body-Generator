@@ -32,10 +32,10 @@ def get_all_urls():
 
 def feature_scrapping(url):
     features = {}
-    soup = BeautifulSoup(requests.get(url).content,'html.parser')
 #     to test the request is a success
-#     response = requests.get(url)
-#     print(response.status_code)
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content,'html.parser')
+    print(response.status_code)
     description = soup.find(class_='features').find('ul')
     if description:
         item_features = description.text.strip()
@@ -44,10 +44,10 @@ def feature_scrapping(url):
     spec_link = soup.find(class_='specs')
     if spec_link:
         spec_url = spec_link['href']
-        spe_soup =BeautifulSoup(requests.get(spec_url).content,'html.parser')
-    #     to test the request is a success
+#     to test the request is a success
         spe_response = requests.get(spec_url)
         print(spe_response.status_code)
+        spe_soup =BeautifulSoup(spe_response.content,'html.parser')
         item_id = spe_soup.find(class_='h-entry topic unread')['id']
         date = spe_soup.find('time')['datetime']
         condition = re.compile(r'Condition')
@@ -57,6 +57,7 @@ def feature_scrapping(url):
         item_id = None
         date = None
         condition = None
+    item = soup.find(class_='features').find('h2').text
     story = soup.find(class_='story').text.strip()
     visits = int(soup.find(class_='primary').find('strong').text.strip())
     phone_visit = float(soup.find(class_='secondary').find_all('strong')[0].text.strip('%'))/100
@@ -99,10 +100,11 @@ if __name__=='__main__':
     rows = []
     unparsed = []
     for url in urls:
+        print (url)
         try:
-            columns.append(feature_scrapping(url))
+            rows.append(feature_scrapping(url))
         except:
-            unpased.append(url)
+            unparsed.append(url)
             print ('url {0} could not be parsed'.format(url))
 #     sleep command here is to prevent the server being 'angry' at my scraping
         time.sleep(np.random.randint(3,10))
@@ -113,6 +115,9 @@ if __name__=='__main__':
 #     time.sleep(np.random.randint(3,10))
     data = pd.DataFrame(rows)
     data.to_csv('meh_data',sep='\t')
+    with open('unparsed.txt', 'w') as f:
+        for item in unparsed:
+            f.write("%s\n" % item)
         
         
         
