@@ -9,17 +9,20 @@ reports a variety of information such as page hits and revenue that are featured
 
 ## Pipeline and Methodology
 
-### Web Scraping: Collect the features of everyday’s deal, including product descriptions, sales
+### Web Scraping: 
+Collect the features of everyday’s deal, including product descriptions, sales
 pitch, sales statistics, and user poll statistics.
 Data cleaning and feature engineering: Create new features like price, conversion rate, and
 dislikes vs. sales ratio; drop largely unpopulated features
 
-### Natural language processing: To create additional features for clustering and analysis, I
+### Natural language processing: 
+To create additional features for clustering and analysis, I
 implement natural language processing techniques to the description and sales pitch which
 includes cleaning and extracting meaningful text content, as well as applying TFIDF-vectorizer
 on meaningful words.
 
-### Clustering: Apply Principle Components Analysis to reduce dimension on TFIDF-vectors; use
+### Clustering: 
+Apply Principle Components Analysis to reduce dimension on TFIDF-vectors; use
 kmeans clustering algorithm to divide all deals into reasonable categories.
 Anova testing: In order to test if there’s significant difference between categories, I used oneway
 anova test; and then apply Tukey’s HSD Post-hoc comparison to further investigate which
