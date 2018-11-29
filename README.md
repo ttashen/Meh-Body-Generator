@@ -34,8 +34,5 @@ the conversion rate, which is number of sales divided by number of page visits. 
 surprising amount of cases early in the website’s history where this ratio is over 1, with a
 maximum that is over 53. The reason for this is unclear, but most likely the website’s visits
 counter was not very accurate when the website first launched.
-The unlucky bags: From the plot of conversion rates along time, the large spike (Fig 1) caught
-my eye. After further investigation, I discovered that the whole month of April in 2016, the
-website only sold one product, the unlucky bags as April fool’s day joke. How ridiculous!
 More sales from power banks/lights: Among the categories from clustering, only the power/
-lights category has statistically significant better sales (Fig 2). So keep them coming!
+lights category has statistically significant better sales. So keep them coming!
