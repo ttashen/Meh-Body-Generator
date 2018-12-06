@@ -1,0 +1,21 @@
+time: yyyy-mm-ddT00:00:00.000Z
+item_id : string
+item_name : string
+item_features: string
+condition: string
+story: string
+visits: int
+phone_visits: percentage
+tablet_visits: percentage
+mehs: int
+type_meh: int
+num_referrals: int
+referrals: {clarkdeals: percentage
+            dealnews': percentage
+            facebook': percentage
+            reddit': percentage
+            twitter': percentage
+            ...}
+sale_num: int
+sale_revenue: int
+poll_num: int
