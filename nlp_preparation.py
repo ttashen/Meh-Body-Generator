@@ -62,11 +62,6 @@ def tfidf_content(lemmatized_content):
     
     return x
     
-def pca_dimention_reduction(X, n):
-
-    
-    pca = PCA(n)
-    X_transformed = pca.fit_transform(X)
     
 
    
