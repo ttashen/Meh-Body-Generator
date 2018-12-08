@@ -35,7 +35,7 @@ While I was looking for a sales performance indicator, I first used the conversi
 # Refferals:
 The website keeps track of the traffic that were directed from other websites. But it looks like these refferals (ex. facebook) are not contributing to sales very much. 
 
-![alt text](https://raw.githubusercontent.com/ttashen/Meh-Meh-Interesting/master/pics/facebook.png)
+![alt text](https://raw.githubusercontent.com/ttashen/Meh-Meh-Interesting/master/pics/facebook_referral.png)
 
 # Exceptional Sales:
 In the plot of the sales trend along time, there are a few spikes indicating exceptional sales. These are the days when meh broke their rules of one deal per day. Instead, the website updated a new deal every few hours. This strategy might be useful to increase sales. But more data will be needed to confirm the hypothesis.
