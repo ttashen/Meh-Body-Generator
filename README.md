@@ -29,10 +29,23 @@ anova test; and then apply Tukey’s HSD Post-hoc comparison to further investig
 categories outperforms others.
 
 ## Results
-The unreasonable outliers: While I was looking for a sales performance indicator, I first used
-the conversion rate, which is number of sales divided by number of page visits. But there is a
-surprising amount of cases early in the website’s history where this ratio is over 1, with a
-maximum that is over 53. The reason for this is unclear, but most likely the website’s visits
-counter was not very accurate when the website first launched.
-More sales from power banks/lights: Among the categories from clustering, only the power/
-lights category has statistically significant better sales. So keep them coming!
+# The unreasonable outliers: 
+While I was looking for a sales performance indicator, I first used the conversion rate, which is number of sales divided by number of page visits. But there is a surprising amount of cases early in the website’s history where this ratio is over 1, with a maximum that is over 53. The reason for this is unclear, but most likely the website’s visits counter was not very accurate when the website first launched. 
+
+# Refferals:
+The website keeps track of the traffic that were directed from other websites. But it looks like these refferals (ex. facebook) are not contributing to sales very much. 
+
+![alt text](https://raw.githubusercontent.com/ttashen/Meh-Meh-Interesting/master/pics/facebook.png)
+
+# Exceptional Sales:
+In the plot of the sales trend along time, there are a few spikes indicating exceptional sales. These are the days when meh broke their rules of one deal per day. Instead, the website updated a new deal every few hours. This strategy might be useful to increase sales. But more data will be needed to confirm the hypothesis.
+
+![alt text](https://raw.githubusercontent.com/ttashen/Meh-Meh-Interesting/master/pics/time_series.png)
+
+# Categories:
+The clustering algorithm successfully placed the deals into categories, among which the best identified ones are Audio, tech/smart devices, kitchen, knives, camera/drones, power banks/lights.
+
+# More sales from power banks/lights: 
+Among the categories from clustering, only the power_banks/lights category has statistically significant better sales. So keep them coming!
+
+![alt text](https://raw.githubusercontent.com/ttashen/Meh-Meh-Interesting/master/pics/boxplot.png)
