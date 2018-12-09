@@ -43,7 +43,7 @@ In the plot of the sales vs. time, there are a few spikes indicating exceptional
 ![alt text](https://raw.githubusercontent.com/ttashen/Meh-Meh-Interesting/master/pics/time_series.png)
 
 # Categories:
-The clustering algorithm successfully placed the deals into categories, among which the best selling categories that were identified are Audio, tech/smart devices, kitchen, knives, camera/drones, power banks/lights.
+The clustering algorithm successfully placed the deals into categories. The clearest categories that were identified are Audio, tech/smart devices, kitchen, knives, camera/drones, power banks/lights.
 
 # More sales from power banks/lights: 
 Among the categories from clustering, only the power_banks/lights category has statistically significant better sales. So keep them coming!
